@@ -14,7 +14,9 @@ type Seller{
 }
 type Query{
   product:Product,
-  
+}
+type Mutation{
+      createProduct(title:String!,price:Float!,inStock:Boolean):Product!
 }
 `
 const resolvers={
@@ -28,6 +30,15 @@ const resolvers={
        rating:5
      }
    },
+},
+Mutation:{
+   createProduct(parent,{title,price,inStock}){
+     return {
+       title,
+       price,
+       inStock
+     }
+   }
 },
   Product:{
     seller(parent,args,ctx,info){
